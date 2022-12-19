@@ -10,7 +10,9 @@ mathjax: true
 
 # Me
 
+I am a graduate student in the galaxy evolution group (Ω Lab) at Nagoya University, Japan.
 
+I have a wide range of interests and research experience in various research topics in the field of astronomy. My interests include the formation and evolution of galaxies, including the dynamical model of galaxies, their interactions as well as the influence of complex physical factors on galaxies, etc.
 
 # This Site
 

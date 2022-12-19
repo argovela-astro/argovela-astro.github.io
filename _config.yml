@@ -1,14 +1,14 @@
 # Site settings
-title: Website Title
-description: Website short description
+title: Hai-Xia Ma
+description: 
 baseurl: "" 
 #change the baseurl to "" if you are using it as your user GitHub Pages
 url: "https://yk-liu.github.io"  
 
 
 # GitHub User settings
-username: Username
-github_username: github_username
+username: Hai-Xia MA
+github_username: argovela-astro
 user_description: user_description
 user_title: user_title
 email: 

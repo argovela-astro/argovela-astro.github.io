@@ -50,4 +50,4 @@ Additional licensing information can be found YOUR WEBSITE LINK.
 
 # Contact
 
-Email: ma.haixia@nagoya-u.jp
+Email: $ma.haixia$@$nagoya-u.jp$

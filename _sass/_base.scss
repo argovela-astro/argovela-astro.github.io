@@ -31,6 +31,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   margin-top: 0;
   font-size: $type-size-3;
+  color: #5D9B84;
 }
 
 h2 {
@@ -96,7 +97,10 @@ blockquote {
   margin: 2em 1em 2em 0;
   padding-left: 1em;
   padding-right: 1em;
-  font-style: italic;
+  // font-style: italic;
+  font-family: Smiley Sans;
+  font-size: $type-size-4;
+  color: #5D9B84;
   border-left: 0.25em solid $primary-color;
 
   cite {

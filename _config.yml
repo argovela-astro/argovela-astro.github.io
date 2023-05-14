@@ -273,6 +273,8 @@ whitelist:
   - jekyll-feed
   - jemoji
 
+# custom favicon
+favicon: /favicon.ico
 
 # Archives
 #  Type

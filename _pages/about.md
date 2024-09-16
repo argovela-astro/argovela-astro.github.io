@@ -22,4 +22,4 @@ My research focuses on unraveling the complex physics that drive galaxy formatio
 # Contact
 
 Division of Particle and Astrophysical Science, Nagoya University <br>
-Email: ma.haixia@naoya-u.jp
+Email: ma.haixia.k8@s.mail.nagoya-u.ac.jp

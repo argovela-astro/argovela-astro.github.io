@@ -111,7 +111,7 @@ author:
   tumblr           :
   twitter          : "ArgoVela_astro"
   vine             :
-  weibo            : "u/5129362446"
+  weibo            :
   xing             :
   youtube          :
   wikipedia        :
@@ -237,13 +237,13 @@ defaults:
   #     share: true
   #     comment: true
   # _talks
-  - scope:
-      path: ""
-      type: talks
-    values:
-      layout: talk
-      author_profile: true
-      share: true
+  # - scope:
+  #     path: ""
+  #     type: talks
+  #   values:
+  #     layout: talk
+  #     author_profile: true
+  #     share: true
 
 # Sass/SCSS
 sass:

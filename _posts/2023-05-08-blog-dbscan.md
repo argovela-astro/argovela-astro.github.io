@@ -141,11 +141,11 @@ Assumption of density: HDBSCAN assumes that clusters are formed by regions of hi
 Remember, the quality of clustering always depends on the nature of the data, the feature representation, and the specific task at hand.
 
 
-Headings are cool
+<!-- Headings are cool
 ======
 
 You can have many headings
 ======
 
 Aren't headings cool?
-------
+------ -->

@@ -13,15 +13,13 @@ redirect_from:
 
 > What is the purpose of the universe? <br> 宇宙的目的是什么？
 
-is a profound question posed in one of my favorite short stories, "朝闻道" by renowned Chinese science fiction author [Cixin Liu](https://en.wikipedia.org/wiki/Liu_Cixin). Translated into English as "Epiphany," this thought-provoking work has left a deep impression on me.
+is a profound question posed in one of my favorite short stories, "朝闻道" by renowned Chinese science fiction author [Cixin Liu](https://en.wikipedia.org/wiki/Liu_Cixin). Translated into English as "Epiphany". It was this ultimate question from Liu's story that genuinely astonished me led me to explore the universe's mysteries.
 
 <!-- <font color="#75ACC0">As an astrophysics student</font> -->
-As an astrophysics student, I am constantly confronted with realistic physics questions related to various tasks, such as determining the timing of reionization or modeling dark matter distribution based on the dynamics of stars. However, it was this ultimate question from Liu's story that genuinely astonished me: what is the purpose of the universe?
-
-I can not help wondering: are we destined to remain perplexed and lost, forever seeking meaning in the vast expanse?
-Perhaps no one will ever find the answer to this question, much like the most advanced civilization in the universe depicted in "Epiphany" that became perplexed and lost. Nevertheless, I embark on a lifelong journey to unravel the universe's most romantic and enigmatic riddle—a quest that transcends the stars and speaks to the essence of our existence. 
+I am an astrophysics student at Nagoya University.
+My research focuses on unraveling the complex physics that drive galaxy formation and evolution across a broad range of physical scales. Specifically, I aim to address the "small-scale crises" of the Cold Dark Matter (CDM) model using galactic dynamics data and explore the nature of the observed tight coupling between dark matter and ordinary matter across different types of galaxies.
 
 # Contact
 
 Division of Particle and Astrophysical Science, Nagoya University <br>
-Email: ma.haixia@naoya-u.jp
+Email: ma.haixia.k8@s.mail.nagoya-u.ac.jp

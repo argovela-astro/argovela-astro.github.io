@@ -7,9 +7,9 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Hai-Xia MA"
+title                    : "Hai-Xia Maß"
 title_separator          : "- Homepage"
-name                     : &name "Hai-Xia MA"
+name                     : &name "Ma, Hai-Xia"
 description              : &description "Ph.D. student in Astronomy at the Nagoya University"
 url                      : https://argovela-astro.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"

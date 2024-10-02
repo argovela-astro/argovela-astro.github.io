@@ -18,7 +18,7 @@ Education
 Work experience
 ======
 * July 2019 - Sept 2020: Research Assistant
-  * Yunnan Observatories， Chinese Academy of Sciences
+  * Yunnan Observatories, Chinese Academy of Sciences
   * Projects included: Couplings between dark matter and baryonic matter on galactic scales: the radial vs. vertical
   * Supervisor: Professor Dong, Xiao-Bo
   

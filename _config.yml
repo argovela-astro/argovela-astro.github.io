@@ -8,9 +8,9 @@
 # Site Settings
 locale                   : "en-US"
 title                    : "Hai-Xia Ma"
-title_separator          : "- Homepage"
-name                     : "Ma, Hai-Xia (马 海霞)"
-description              : &description "Ph.D. student in Astronomy at the Nagoya University"
+title_separator          : "-"
+name                     : &name "Ma, Hai-Xia"
+description              : &description "Ph.D. student in Astrophysics"
 url                      : https://argovela-astro.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "argovela-astro/argovela-astro.github.io"
@@ -80,9 +80,9 @@ yandex_site_verification :
 
 # Site Author
 author:
-  name             : "Hai-Xia Ma"
+  name             : "Ma, Hai-Xia (马 海霞)"
   avatar           : "profile.jpg"
-  bio              : "Seeking the answer of the Universe with head in the clusters and eyes on the stars"
+  bio              : "Ph.D. student in Astrophysics"
   location         : "Nagoya, Japan"
   employer         :
   pubmed           : # "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"

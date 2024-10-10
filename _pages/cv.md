@@ -15,7 +15,7 @@ Education
 ======
 * B.S. in Astronomy, University of Science and Technology of China, P.R. China, 2015
 * M.S. in Astronomy, Nagoya University, Japan, 2020
-* Ph.D in Astronomy, Nagoya University, Japan, 2025s (expected)
+* Ph.D in Astronomy, Nagoya University, Japan, 2025 (expected)
 
 Work experience
 ======

@@ -32,8 +32,8 @@
 			"density": 3
 		},
 		{
-			"src": "\/images\/android-chrome-192x192.png?v=M44lzPylqQ",
-			"sizes": "192x192",
+			"src": "\/images\/wondering_earth.png",
+			"sizes": "512x512",
 			"type": "image\/png",
 			"density": 4
 		}

@@ -9,7 +9,7 @@ redirect_from:
 ---
 
 
-### Celestial Ruminations: A Quest for the Universe's Purpose
+<!-- ### Celestial Ruminations: A Quest for the Universe's Purpose -->
 
 > What is the purpose of the universe? <br> 宇宙的目的是什么？
 

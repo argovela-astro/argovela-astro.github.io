@@ -8,6 +8,12 @@ author_profile: true
 {% include base_path %}
 {% capture written_label %}'None'{% endcapture %}
 
+<link rel="icon" type="image/png" href="/images/wondering_earth.png" sizes="512x512">
+<link rel="apple-touch-icon" sizes="512x512" href="/images/wondering_earth.png">
+
+{% include head.html %}
+{% include head/custom.html %}
+
 {% for collection in site.collections %}
   {% unless collection.output == false or collection.label == "posts" %}
     {% capture label %}{{ collection.label }}{% endcapture %}

@@ -3,12 +3,12 @@
     "short_name": "",
     "icons": [
         {
-            "src": "/wondering_earth_192x192.png",
+            "src": "/images/wondering_earth_192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/wondering_earth.png",
+            "src": "/images/wondering_earth.png",
             "sizes": "512x512",
             "type": "image/png"
         }

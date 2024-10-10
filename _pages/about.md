@@ -11,7 +11,7 @@ redirect_from:
 
 <!-- ### Celestial Ruminations: A Quest for the Universe's Purpose -->
 
-> What is the purpose of the universe? <br> 宇宙的目的是什么？
+> What is the purpose of the Universe? <br> 宇宙的目的是什么？
 
 is a profound question posed in one of my favorite short stories, "朝闻道" by renowned Chinese science fiction author [Cixin Liu](https://en.wikipedia.org/wiki/Liu_Cixin). Translated into English as "Epiphany". It was this ultimate question from Liu's story that genuinely astonished me led me to explore the universe's mysteries.
 

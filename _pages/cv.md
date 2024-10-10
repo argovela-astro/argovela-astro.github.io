@@ -9,7 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
-You can find [my CV here](). 
+You can find [my CV here](http://argovela-astro.github.io/files/MA_Hai-Xia_CV.pdf). 
 
 Education
 ======

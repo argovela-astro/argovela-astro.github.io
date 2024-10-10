@@ -273,9 +273,6 @@ whitelist:
   - jekyll-feed
   - jemoji
 
-# custom favicon
-favicon: /favicon.ico
-
 # Archives
 #  Type
 #  - GitHub Pages compatible archive pages built with Liquid ~> type: liquid (default)

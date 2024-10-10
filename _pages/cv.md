@@ -9,6 +9,8 @@ redirect_from:
 
 {% include base_path %}
 
+You can find [my CV here](). 
+
 Education
 ======
 * B.S. in Astronomy, University of Science and Technology of China, P.R. China, 2015

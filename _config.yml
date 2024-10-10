@@ -8,8 +8,8 @@
 # Site Settings
 locale                   : "en-US"
 title                    : "Hai-Xia Ma"
-title_separator          : "-"
-name                     : &name "Ma, Hai-Xia"
+title_separator          : " | "
+name                     : &name "Hai-Xia Ma"
 description              : &description "Ph.D. student in Astrophysics"
 url                      : https://argovela-astro.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"

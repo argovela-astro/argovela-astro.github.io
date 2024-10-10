@@ -1,7 +1,6 @@
 ---
 permalink: /
-title:
-# title: "About me"
+title: "About me"
 excerpt: "About me"
 author_profile: true
 redirect_from: 
@@ -9,7 +8,6 @@ redirect_from:
   - /about.html
 ---
 
-# About Me
 <!-- ### Celestial Ruminations: A Quest for the Universe's Purpose -->
 
 > What is the purpose of the Universe? <br> 宇宙的目的是什么？

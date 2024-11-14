@@ -80,7 +80,7 @@ yandex_site_verification :
 
 # Site Author
 author:
-  name             : "Ma, Hai-Xia \\ (马 海霞)"
+  name             : "Ma, Hai-Xia <br> 马 海霞"
   avatar           : "profile.jpg"
   bio              : "Ph.D. student in Astrophysics"
   location         : "Nagoya, Japan"

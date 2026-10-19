@@ -10,3 +10,5 @@ citation: "Dong, X.; Zhu, Y.; Rieke, M.; Rieke, G.; Li, X.; Behroozi, P.; <b>Ma,
 display_order: 4
 authors: "Dong, X.; Zhu, Y.; Rieke, M.; Rieke, G.; Li, X.; Behroozi, P.; <b>Ma, H.-X.</b>; Meng, R.; Mao, Z.; Sun, Z."
 ---
+
+[Read paper here](https://doi.org/10.48550/arXiv.2508.09258)

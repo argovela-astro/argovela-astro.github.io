@@ -10,3 +10,5 @@ citation: "Takeuchi, T. T.; <b>Ma, H.-X.</b>; Ogane, Y.; &quot;Event-driven form
 display_order: 3
 authors: "Takeuchi, T. T.; <b>Ma, H.-X.</b>; Ogane, Y."
 ---
+
+[Read paper here](https://doi.org/10.1103/k2zn-96wd)

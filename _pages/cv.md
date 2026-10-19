@@ -9,16 +9,20 @@ redirect_from:
 
 {% include base_path %}
 
-You can find [my CV here](http://argovela-astro.github.io/files/Academic_CV.pdf). 
+You can find [my CV here]({{ "/files/Academic_CV.pdf" | relative_url }}?v={{ site.time | date: "%s" }}).
 
 Education
 ======
-* B.S. in Astronomy, University of Science and Technology of China, P.R. China, 2015
-* M.S. in Astronomy, Nagoya University, Japan, 2020
-* Ph.D in Astronomy, Nagoya University, Japan, 2025 (expected)
+* B.S. in Astronomy, University of Science and Technology of China, P.R. China, 2019
+* M.S. in Astronomy, Nagoya University, Japan, 2022
+* Ph.D. (Doctor of Science), Nagoya University, Japan, 2026
 
 Work experience
 ======
+* Oct. 2026 - Sept. 2027: ALMA Project Postdoctoral Researcher
+  * National Astronomical Observatory of Japan and Nagoya University, Japan
+  * Supervisor: Professor Hideki Umehata
+
 * July 2019 - Sept 2020: Research Assistant
   * Yunnan Observatories, Chinese Academy of Sciences
   * Projects included: Couplings between dark matter and baryonic matter on galactic scales: the radial vs. vertical

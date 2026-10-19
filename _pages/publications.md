@@ -13,7 +13,7 @@ author_profile: true
 
 {% include base_path %}
 
-{% assign selected_publications = site.publications | where: 'selected', true | sort: 'date' | reverse %}
+{% assign selected_publications = site.publications | where: 'selected', true | sort: 'display_order' %}
 {% for post in selected_publications %}
-  {% include archive-single.html %}
+  {% include archive-single.html authors_only=true %}
 {% endfor %}

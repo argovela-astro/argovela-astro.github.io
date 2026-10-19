@@ -1,0 +1,16 @@
+---
+title: "Event-driven formulation of cosmic structure formation via Morse-Cerf theory"
+collection: "publications"
+permalink: "/publication/cosmic-structure-morse-cerf"
+date: "2026-10-01"
+publication_month: "2026-10"
+publication_date: "October 2026"
+authorship: "coauthor"
+venue: "Physical Review D"
+publication_status: "published"
+authors: "T. T. Takeuchi; <strong>H.-X. Ma</strong>; Y. Ogane"
+journal: "<em>Physical Review D</em>."
+doi: "10.1103/k2zn-96wd"
+paperurl: "https://doi.org/10.1103/k2zn-96wd"
+citation: "T. T. Takeuchi; <strong>H.-X. Ma</strong>; Y. Ogane. 2026. &ldquo;Event-driven formulation of cosmic structure formation via Morse-Cerf theory.&rdquo; <em>Physical Review D</em>."
+---

@@ -1,0 +1,16 @@
+---
+title: "Discovery of a Unique Close Quasar–DSFG Pair Linked by a [C II] Bridge at z = 5.63"
+collection: "publications"
+permalink: "/publication/quasar-dsfg-pair"
+date: "2024-11-01"
+publication_month: "2024-11"
+publication_date: "November 2024"
+authorship: "coauthor"
+venue: "Research Notes of the AAS"
+publication_status: "published"
+authors: "Y. Zhu; T. J. L. C. Bakx; R. Ikeda; H. Umehata; G. D. Becker; C. Cain; J. B. Champagne; X. Fan; Y. Fudamoto; X. Jin; <strong>H.-X. Ma</strong>; Y. Sun; T. T. Takeuchi; W. L. Tee"
+journal: "<em>Research Notes of the AAS</em>, 8(11), 284."
+doi: "10.3847/2515-5172/ad91ad"
+paperurl: "https://doi.org/10.3847/2515-5172/ad91ad"
+citation: "Y. Zhu; T. J. L. C. Bakx; R. Ikeda; H. Umehata; G. D. Becker; C. Cain; J. B. Champagne; X. Fan; Y. Fudamoto; X. Jin; <strong>H.-X. Ma</strong>; Y. Sun; T. T. Takeuchi; W. L. Tee. 2024. &ldquo;Discovery of a Unique Close Quasar–DSFG Pair Linked by a [C II] Bridge at z = 5.63.&rdquo; <em>Research Notes of the AAS</em>, 8(11), 284."
+---

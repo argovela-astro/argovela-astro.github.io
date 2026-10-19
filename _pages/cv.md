@@ -13,9 +13,9 @@ You can find [my CV here]({{ "/files/Academic_CV.pdf" | relative_url }}?v={{ sit
 
 Education
 ======
-* B.S. in Astronomy, University of Science and Technology of China, P.R. China, 2019
-* M.S. in Astronomy, Nagoya University, Japan, 2022
 * Ph.D. (Doctor of Science), Nagoya University, Japan, 2026
+* M.S. in Astronomy, Nagoya University, Japan, 2022
+* B.S. in Astronomy, University of Science and Technology of China, P.R. China, 2019
 
 Work experience
 ======

@@ -243,3 +243,21 @@
     }
   }
 }
+
+
+/* Subtle separators for the selected publications page. */
+.publication-list {
+  .archive__item > p:last-child {
+    margin-bottom: 0;
+  }
+
+  .list__item ~ .list__item .archive__item {
+    margin-top: 1.5em;
+    padding-top: 1.5em;
+    border-top: 1px solid #ddd;
+
+    .archive__item-title {
+      margin-top: 0;
+    }
+  }
+}

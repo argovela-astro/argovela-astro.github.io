@@ -245,8 +245,9 @@
 }
 
 
-/* Subtle separators for the selected publications page. */
-.publication-list {
+/* Subtle separators for publication and blog lists. */
+.publication-list,
+.blog-list {
   .archive__item > p:last-child {
     margin-bottom: 0;
   }

@@ -1,0 +1,26 @@
+Figures used in the clustering blog posts
+
+gmm-density.png
+Reproduced unchanged from the scikit-learn developers.
+https://scikit-learn.org/stable/auto_examples/mixture/plot_gmm_pdf.html
+Image: https://scikit-learn.org/stable/_images/sphx_glr_plot_gmm_pdf_001.png
+BSD 3-Clause; see SCIKIT-LEARN-LICENSE.txt.
+
+dbscan-clusters.png
+Reproduced unchanged from the scikit-learn developers.
+https://scikit-learn.org/stable/auto_examples/cluster/plot_dbscan.html
+Image: https://scikit-learn.org/stable/_images/sphx_glr_plot_dbscan_002.png
+BSD 3-Clause; see SCIKIT-LEARN-LICENSE.txt.
+
+optics-reachability.png
+Reused from Hai-Xia Ma, Data Driven Inference of Multi-Scale Gravitational Mass Distributions, PhD thesis, Nagoya University, 2026, Figure 2.6, page 42.
+Thesis figure adapted from the scikit-learn OPTICS example. Original example by the scikit-learn developers, BSD 3-Clause.
+https://scikit-learn.org/stable/auto_examples/cluster/plot_optics.html
+The thesis source image is reproduced unchanged in this blog.
+
+hdbscan-hierarchy.png
+Reused from the same thesis, Figure 2.7, page 43.
+Thesis figure adapted from Figure 4 of Shem Otoi Onyango, Solomon Amoah Owiredu, Kwang-Il Kim, and Sang-Lok Yoo (2022), A Quasi-Intelligent Maritime Route Extraction from AIS Data, Sensors 22(22), 8639.
+https://doi.org/10.3390/s22228639
+Copyright 2022 the authors. CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+The thesis source image is reproduced unchanged in this blog.

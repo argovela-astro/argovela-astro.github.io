@@ -1,151 +1,86 @@
 ---
-title: 'Introduction to Clustering Algorithms: DBSCAN, OPTICS, and HDBSCAN'
+title: 'DBSCAN, OPTICS, and HDBSCAN: Finding Groups by Crowding'
 date: 2023-05-08
+last_modified_at: 2026-10-19
 permalink: /posts/2023-05-08-blog-dbscan
+excerpt: 'A visual introduction to three algorithms that find crowded regions, separate groups, and leave isolated points unassigned.'
 tags:
   - Unsupervised Machine Learning
   - Clustering Algorithms
   - Density-based Clustering
 ---
 
-## DBSCAN Pros and Cons Summary
-Advantages:
+Look at a map of people in a park. A crowd may form a circle, a long queue, or a loose gathering. You can often recognize these groups without knowing how many there are: people inside a group have many neighbors, while gaps separate one group from another.
 
-Compared to K-Means, DBSCAN does not require a pre-declared number of clusters.
-It can cluster dense datasets of arbitrary shape, as opposed to clustering algorithms like K-Means which are generally only applicable to convex datasets.
-It is possible to find outliers while clustering and is insensitive to outliers in the dataset.
-The clustering results are not biased, in contrast, the initial values of clustering algorithms such as K-Means have a great influence on the clustering results.
-Disadvantages:
+**DBSCAN, OPTICS, and HDBSCAN use this idea of local crowding.** They can find groups with irregular shapes and leave some points unassigned. Their main difference is how they decide what counts as crowded.
 
-The quality of clustering is poor when the density of spatial clustering is not uniform and the clustering spacing difference is very different, because the parameters MinPts and Eps are difficult to select in this case.
-The clustering convergence time is long if the sample set is large, and then it can be improved by imposing a size limit on the KD tree or sphere tree built when searching the nearest neighbor.
-The point at the junction edge of two clusters will decide which cluster to join depending on its order in the database; fortunately, this is not common and has little impact on the overall clustering result (DBSCAN* variant algorithm, which treats the junction point as noise, achieves a fully deterministic result.)
-Tuning is slightly more complicated than traditional clustering algorithms like K-Means, mainly requiring joint tuning of distance threshold eps, neighborhood sample number threshold MinPts, and different combinations of parameters have a greater impact on the final clustering result.
+*Updated October 19, 2026. No equations or coding experience needed.*
 
-## OPTICS:
-OPTICS is an extended algorithm for DBSCAN. This algorithm allows the algorithm to be less sensitive to radius Eps. A slight change in radius Eps does not affect the clustering results as long as the value of minPts is determined.
+| Method | The main idea | The result |
+| :--- | :--- | :--- |
+| DBSCAN | Look for enough neighbors within a chosen distance. | Groups and unassigned points. |
+| OPTICS | Record how points connect across a range of density levels. | A plot from which groups can be selected. |
+| HDBSCAN | Follow groups through changing density levels and select persistent ones. | Selected groups and unassigned points. |
 
-OPTICS does not generate the resulting class clusters as displayed, but rather generates an extended cluster ordering for the clustering analysis (e.g., a coordinate plot with reachable distance as the vertical axis and sample point output order as the horizontal axis), and this ordering represents the density-based clustering structure of each sample point. It contains information equivalent to the density-based clustering obtained from a wide range of parameter settings, in other words, the clustering results of the DBSCAN algorithm based on any parameter Eps and minPts can be obtained from this ranking.
+## DBSCAN: count neighbors, then connect crowded regions
 
-OPTICS (Ordering Points To Identify the Clustering Structure) is another unsupervised machine learning method that is used for clustering. It's similar to DBSCAN in the way it works, but it addresses one of DBSCAN's major weaknesses: the need to choose an appropriate value for the radius of the neighborhood around each point. Instead of a global parameter, OPTICS generates a reachability plot which gives a visualization of the data's structure and allows cluster extraction at different levels of granularity.
+DBSCAN starts with two settings:
 
-Application of OPTICS to find galaxy clusters:
+* **`eps`:** how far to look around each point.
+* **`min_samples`:** how many points must lie within that distance for the neighborhood to count as dense. In scikit-learn, this count includes the point itself.
 
-Similar to HDBSCAN, before starting with OPTICS, you need to have a structured dataset which typically includes parameters like right ascension (RA), declination (Dec), redshift (z), etc., of the galaxies. The process of finding galaxy clusters can be described as follows:
+For example, set `eps` to 2 meters and `min_samples` to 5. A person counts as a **core point** if at least five people, including that person, lie within 2 meters.
 
-Data Preparation: Clean your data and ensure it's in the right format. Remove any null or irrelevant values. The dimensions used for clustering could be the coordinates of the galaxies (e.g., right ascension and declination) or some transformed coordinates (e.g., redshift space).
+The algorithm connects neighboring core points into a group. It also includes nearby **border points**: people who are close to a core point but do not have enough neighbors to be core points themselves. A border point joins a group without extending the search through its own neighbors. Points outside these groups are labeled **noise**. Here, noise means “not assigned at these settings,” not “bad data.”
 
-Feature Scaling: This step might be necessary if the features have different scales. The common methods of feature scaling include normalization and standardization.
+<figure>
+  <a href="{{ '/images/blog/dbscan-clusters.png' | relative_url }}"><img src="{{ '/images/blog/dbscan-clusters.png' | relative_url }}" alt="DBSCAN finds three groups of points colored orange, pale green, and dark pink. Large colored circles are core points, small colored circles are border points, and black points are unassigned." width="640" height="480" loading="lazy"></a>
+  <figcaption>Three groups emerge without supplying the number three. Large colored dots are core points; smaller colored dots are border points. Black dots are unassigned. The larger symbols indicate point type, not physical size. Figure: <a href="https://scikit-learn.org/stable/auto_examples/cluster/plot_dbscan.html">scikit-learn developers, Demo of DBSCAN clustering algorithm</a>, reproduced unchanged under the <a href="{{ '/images/blog/SCIKIT-LEARN-LICENSE.txt' | relative_url }}">BSD 3-Clause license</a>.</figcaption>
+</figure>
 
-Apply OPTICS: Apply the OPTICS algorithm to the dataset. OPTICS has two main parameters, max_eps and min_samples. The max_eps is the maximum radius of the neighborhood around a data point, and min_samples is the number of points to be included in the cluster's core. The choice of these parameters may affect the number and size of clusters that you find, and they may need to be tuned depending on the specifics of your dataset.
+The main difficulty is choosing one distance for the whole dataset. A small `eps` can break a loose crowd into fragments. A large value can connect neighboring crowds. This matters when a dataset contains both tightly packed and widely spread groups. See the [DBSCAN guide](https://scikit-learn.org/stable/modules/clustering.html#dbscan) for the precise definitions.
 
-Interpret the results: The output of OPTICS is an ordering of the data points as a reachability plot, rather than explicit clusters. However, clusters can be extracted from this plot at different scales, which can be useful if you're not sure ahead of time what the appropriate scale is.
+## OPTICS: make a plot of the density structure
 
-Limitations of OPTICS:
+OPTICS explores the points in an order that tends to keep densely connected regions together. For each point, it records a **reachability distance**: a distance that accounts for both the gap to an already visited core point and the crowding around that core point.
 
-Complexity: OPTICS is more complex and computationally expensive than some other clustering algorithms. Its time complexity is O(n^2) in the worst case, although in practice it's usually closer to O(n log n).
+Small values mean a point can be reached through a dense neighborhood without a large gap. Plot these values in the order OPTICS visits the points, and groups often appear as valleys.
 
-Noisy Data: OPTICS can be sensitive to noise in the data, which can distort the reachability plot and make it harder to identify clusters.
+<figure>
+  <a href="{{ '/images/blog/optics-reachability.png' | relative_url }}"><img src="{{ '/images/blog/optics-reachability.png' | relative_url }}" alt="An OPTICS reachability plot with several valleys above three maps of the same data. A low DBSCAN cut misses loose groups, while a higher cut merges some nearby groups." width="1000" height="700" loading="lazy"></a>
+  <figcaption>Start with the valleys in the top panel, then compare the three maps below. This is Figure 2.6 from my 2026 PhD thesis, <em>Data Driven Inference of Multi-Scale Gravitational Mass Distributions</em>, p. 42. The thesis figure is adapted from the <a href="https://scikit-learn.org/stable/auto_examples/cluster/plot_optics.html">scikit-learn OPTICS example</a>. Original example by the scikit-learn developers, <a href="{{ '/images/blog/SCIKIT-LEARN-LICENSE.txt' | relative_url }}">BSD 3-Clause license</a>.</figcaption>
+</figure>
 
-Parameter Selection: Although OPTICS does not require choosing a global radius parameter like DBSCAN, it still requires choosing values for max_eps and min_samples, which can influence the results and may need to be tuned based on the dataset.
+Here is how to read the figure:
 
-Interpretability: Interpreting the reachability plot and extracting clusters from it can be less straightforward than with algorithms that directly output clusters.
+* **Top:** each position along the horizontal axis is a point in the OPTICS ordering, not its position on the original map. Low stretches indicate dense connections. High values often occur at gaps or transitions.
+* **Bottom middle:** the smaller distance cut finds the tight groups but misses much of the loose green and yellow groups.
+* **Bottom right:** a larger cut recovers those loose groups but merges some nearby groups into the purple one.
+* **Bottom left:** the illustrated OPTICS extraction keeps several groups with different densities separate.
 
-Remember, the quality of clustering always depends on the nature of the data, the feature representation, and the specific task at hand. Also, always consider the computational resources you have at your disposal when choosing a clustering algorithm.
+OPTICS separates the description of the density structure from the choice of final groups. You can extract groups using a distance cut or by detecting steep changes around valleys. It still needs settings: `min_samples` controls local density, `max_eps` limits the search distance, and `xi` controls the required relative steepness when using that extraction method. Different settings can change the answer. This example is an illustration, not a guarantee that OPTICS always finds the intended groups.
 
+## HDBSCAN: keep groups that persist
 
-## what's the difference between them?
+Imagine gradually making the crowding requirement stricter. A large group may split into smaller groups, and scattered points may drop away. HDBSCAN records these changes as a tree of nested groups.
 
-Both HDBSCAN and OPTICS are density-based clustering algorithms, and they're both extensions of the original DBSCAN algorithm. Here are some key differences between them:
+Before building the tree, it adjusts distances using local crowding. This reduces the ability of sparse points to form accidental bridges between dense groups. It then removes branches that are too small and selects clusters using a measure of stability. In the usual selection method, stability considers both how long a group persists across density levels and how many points remain in it.
 
-1. Handling of Variable Density:
+<figure>
+  <a href="{{ '/images/blog/hdbscan-hierarchy.png' | relative_url }}"><img src="{{ '/images/blog/hdbscan-hierarchy.png' | relative_url }}" alt="A diagram of distances adjusted for local density on the left, and seven numbered points with a branching group tree on the right. Different cuts of the tree give different numbers of groups." width="850" height="320" loading="lazy"></a>
+  <figcaption>Focus on the right panel: the same seven points can form two broad groups or three smaller groups. The tree records these nested choices. Its horizontal cuts illustrate a hierarchy; HDBSCAN's final stability selection is an additional step. Figure 2.7 from my PhD thesis, adapted from Figure 4 of <a href="https://doi.org/10.3390/s22228639">Onyango et al. (2022)</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</figcaption>
+</figure>
 
-HDBSCAN, compared to OPTICS, is better at handling clusters of varying density. HDBSCAN operates by transforming the space according to the density/sparsity of the data points, which effectively makes it able to find clusters of different densities.
+HDBSCAN does not require one global `eps`, but it still requires decisions. **`min_cluster_size`** sets the smallest group you want to retain. **`min_samples`** controls how conservatively the algorithm treats local density; increasing it generally leaves more points unassigned. Neither setting supplies the number of groups.
 
-OPTICS, on the other hand, provides a reachability plot which presents the data's structure at different density levels, but doesn't inherently handle varying densities as well as HDBSCAN.
+The [HDBSCAN explanation](https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html) describes the tree and stability calculation. The [parameter reference](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.HDBSCAN.html) explains the scikit-learn implementation.
 
-2. Hierarchical Clustering:
+## Choosing a method for real data
 
-HDBSCAN, as the "H" in its name suggests, offers hierarchical clustering. It creates a hierarchy of clusters at different scales and uses this to determine the "best" clustering at a single scale. This can be particularly useful for data where clusters are nested within other clusters.
+Start with **DBSCAN** when one neighborhood distance has a useful meaning. Use **OPTICS** when you want to inspect structure across several density levels. Consider **HDBSCAN** when group densities differ and you want the algorithm to select groups from a hierarchy.
 
-OPTICS doesn't provide an inherent hierarchy of clusters. However, the reachability plot it generates can be analyzed at different scales to extract clusters at those scales.
+All three depend on what “nearby” means. A dataset containing distance in meters and time in seconds needs a deliberate choice of units, scaling, and distance measure. Otherwise, changing the units alone can change the groups.
 
-3. Interpretability of Results:
+This is especially important for galaxies. Redshift helps estimate distance, but a galaxy's own motion also changes its redshift. A galaxy group can therefore appear stretched along our line of sight. In my [sOPTICS work](https://doi.org/10.1093/mnras/staf115), I adjust the distance measure to account for this effect before applying OPTICS. A group of nearby points is a candidate physical system; simulations or other observations are needed to test that interpretation.
 
-HDBSCAN provides explicit cluster assignments, which can be easier to interpret and use for some applications. Each point is assigned to a cluster, or designated as noise.
-
-OPTICS, in contrast, provides an ordered list of data points and their reachability distances, which can be less intuitive to interpret. You have to examine the reachability plot and decide where to cut it off to define clusters.
-
-4. Parameter Selection:
-
-Both algorithms require parameter tuning, but the parameters have different interpretations. In HDBSCAN, the key parameters are min_cluster_size and min_samples, which control the minimum size of clusters and the density considered for clustering.
-
-In OPTICS, the parameters are min_samples (similar to HDBSCAN's parameter) and max_eps, which is the maximum reachability distance to consider. If max_eps is set too low, denser clusters may be missed; if it's set too high, clusters may be merged together.
-
-In summary, the best algorithm to use depends on the specifics of your dataset and the problem you're trying to solve. Both HDBSCAN and OPTICS have their strengths and weaknesses, and it might be beneficial to try both and see which one gives better results for your specific use case.
-
-
-
-
-
-
-
-
-
-
-## HDBSCAN - Hierarchical Density-Based Spatial Clustering of Applications with Noise. 
-
-Performs DBSCAN over varying epsilon values and integrates the result to find a clustering that gives the best stability over epsilon. This allows HDBSCAN to find clusters of varying densities (unlike DBSCAN), and be more robust to parameter selection.
-
-
-Compared to the DBSCAN algorithm HDBSCAN has made several optimizations as follows:
-
-1. Defines a way to measure the mutual reachability distance between two points from each other with the following formula:
-$$
-d_{\text {mreach }-k}(a, b)=\max \left\{\text { core }_k(a), \text { core }_k(b), \text { distance }(1, b)\right\}
-$$
-According to the [original article](https://ui.adsabs.harvard.edu/abs/2015arXiv150606422E/abstract), it has been shown that using this distance metric can effectively satisfy the Hartigan consistency condition
-
-Use the minimum spanning tree to build a hierarchical number model between points, introducing the idea of hierarchical clustering, and at the same time the minimum spanning tree pruning of the smallest child tree to do restrictions, mainly to control the generation of class clusters not too small
-
-3. defines a splitting measure called stability
-
-Personally, I understand that the biggest advantage of HDBSCAN over DBSCAN is that there is no need to choose the domain radius R and MinPts manually, most of the time only the size of the minimum generating class cluster can be chosen, and the algorithm can automatically recommend the optimal cluster class result. It also defines a new distance measure that can better reflect the density of points.
-
-HDBSCAN (Hierarchical Density-Based Spatial Clustering of Applications with Noise) is an unsupervised machine learning method that is used for clustering. It can be used to identify galaxy clusters from a catalog of astronomical data. The method is based on density, which means it groups together data points that are closely packed together (dense), and separates data points that are far apart.
-
-Application of HDBSCAN to find galaxy clusters:
-
-Before starting with HDBSCAN, you need to have a structured dataset which typically includes parameters like right ascension (RA), declination (Dec), redshift (z), etc., of the galaxies. The process of finding galaxy clusters can be described as follows:
-
-Data Preparation: Ensure your data is clean and in the right format. Remove any null or irrelevant values. The dimensions used for clustering in this case could be the coordinates of the galaxies (e.g., right ascension and declination) or some transformed coordinates (e.g., redshift space).
-
-Feature Scaling: This step might be necessary if the features have different scales. The common methods of feature scaling include normalization and standardization.
-
-Apply HDBSCAN: Apply the HDBSCAN algorithm to the dataset. HDBSCAN has two main parameters, min_cluster_size and min_samples. The min_cluster_size is the minimum number of points required to form a cluster, and min_samples is the number of points to be included in the cluster's core. The choice of these parameters may affect the number and size of clusters that you find, and they may need to be tuned depending on the specifics of your dataset.
-
-Interpret the results: The output of HDBSCAN is a set of labels that indicate the cluster to which each data point is assigned. Noise points that are not assigned to any cluster are typically given a label of -1. You can visualize the results using a scatter plot or similar, with different clusters shown in different colors.
-
-Limitations of HDBSCAN:
-
-Choosing parameters: The biggest challenge with HDBSCAN is the selection of the min_cluster_size and min_samples parameters. These parameters can greatly influence the results, but there is no universally "correct" choice, it depends on the specific dataset and the specific scientific question you are trying to answer.
-
-Handling of noise: HDBSCAN can be sensitive to noise, and it treats less dense regions as noise. This can be a problem if your dataset has a lot of noise, or if it has clusters of varying density.
-
-Interpretability: The algorithm can sometimes produce complex hierarchical clusters that are hard to interpret, especially in higher dimensional spaces.
-
-Performance: HDBSCAN has a time complexity of O(N log N) which makes it efficient for small to medium-sized datasets but can become a bottleneck when dealing with large datasets.
-
-Assumption of density: HDBSCAN assumes that clusters are formed by regions of high density separated by regions of low density. This might not always be the case, especially in astronomical data where galaxy clusters could be shaped by other factors like gravitational forces, dark matter, etc.
-
-Remember, the quality of clustering always depends on the nature of the data, the feature representation, and the specific task at hand.
-
-
-<!-- Headings are cool
-======
-
-You can have many headings
-======
-
-Aren't headings cool?
------- -->
+For any dataset, vary the settings, inspect which memberships change, and check whether the groups answer your actual question. If overlapping clouds and membership probabilities are more useful, read the companion post on [Gaussian mixture models]({{ '/posts/2023-04-29-blog-gmm' | relative_url }}).

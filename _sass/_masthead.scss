@@ -51,3 +51,17 @@
     font-weight: 700;
   }
 }
+
+/* Align the first navigation link with the main content column. */
+$content-start: (100% - span(10 of 12) + span(0.5 of 12 wide)) / 100%;
+
+.greedy-nav .visible-links .masthead__menu-item--lg {
+  @include breakpoint($large) {
+    padding-right: 0;
+    min-width: calc(#{$large * $content-start} - #{(2 * $content-start + 1) * 1rem});
+  }
+
+  @include breakpoint($x-large) {
+    min-width: calc(#{$x-large * $content-start} - #{(2 * $content-start + 1) * 1rem});
+  }
+}
